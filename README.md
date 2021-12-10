@@ -1,9 +1,9 @@
 # Image-Classification-Project
-### **Introduction**
+## **Introduction**
 Image recognition has a vast array of applications: facial recognition, google lens and image organisation are just a few of the possibilities. The technology driving image recognition is improving rapidly as the technology begins to become more prevalent in our daily lives. 
 There are various approaches that can be taken when implementing image recognition, there are unsupervised methods such as K-Means and Gaussian clustering, supervised methods like Regression, Support Vector Machines and Neural Networks as well as dimensionality reduction to gain deeper insight into the structure of the data.
 
-### **Methodology**
+## **Methodology**
 To carry out these methods, appropriate feature extraction must take place. This will be carried out using Histogram of Oriented Gradients (HOG) extraction. HOG extraction focuses on the change in gradient between pixels \cite{learnopen} analysing the images gradient direction and magnitude to produce relevant data and provide an insight to the shape of an object in a picture. This is a good starting place for our implementation as the shape of the image is the key indication as to what the image represents in addition to factors such as colour.
 
 ### K-Means and Gaussian
@@ -19,7 +19,7 @@ When implementing NNs or CNNs it is important to consider the order of the data 
 The CNN requires the data to be fed slightly differently, so I will add a section in the code to properly organise the data. The main thing is to ensure the user of keras.utils.to_categorical(ytrain, 10) and ytestCNN = keras.utils.to_categorical(ytest, 10) to ensure 10 categories are used.
 
 
-### **Results**
+## **Results**
 I began by testing PCA to see if this unsupervised method could provide insight into the characteristics of the data. My results showed PCA with n_components=2 produces a score of 14272, I then tested with n_components=10 yielding a score of 14632. This shows how much data was able to be retained while massively reducing the dimensions. This is probably because the data is often related which benefits dimensionality reduction, showing it can be a very useful tool when approaching problems such as this.
 I then moved on to supervised approaches starting with LDA. I attempted to classify the data using LDA but only yielded a score of 0.375. The below confusion matrix shows the large number of false positives and false negatives produced. The main categories to suffer from this were categories 3,4,5,6,7. This is likely because they are all animal images and have a relatively similar structure making them hard to differentiate.
 
@@ -39,7 +39,7 @@ Finally, I tested the performance of a Convolutional Neural Network (CNN). The C
 
 The CCN and the addition of a convolution layer likely performs better for two reasons. First, the convolution layer provides simpler processing, improving time complexity dramatically. Second, the convolution layer benefits datasets with a lot of related data, images are a great example of this.
 
-### **Conclusion**
+## **Conclusion**
 As predicted a supervised approach is favourable to this problem, especially since we are given labels in our dataset. Our SVM and LDA implementation yielded reasonable accuracies, but suffered from extremely long execution times, partly due to the ‘curse of dimensionality’. Out of the two, SVM would be the preferred option as it had a similar running time to LDA, but a higher accuracy of 0.514 (whereas LDA yielded 0.315). Similarly, PCA is useful for gaining insight into the dataset. However deep learning techniques, namely CNNs, are the most suitable approach to this problem as they work well on datasets that contain related data and execute in reasonable time.
 The accuracy of these algorithms can be improved with various tweaks and changes. For example, a paper published by Harbin University of Science and Technology, China, concluded that an improved SVM using two mixed kernel functions of Wavelet and Gaussian functions improved efficiency and accuracy [7].  In addition to this, more computing power will improve the results for SVM and LDA which currently suffer from long execution times, however this us due to the limitations of my hardware. If this experiment were to be carried out again, I would recommend more computing power and find out what other tweaks can be made to improve the methods.
 
